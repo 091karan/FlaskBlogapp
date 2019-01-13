@@ -9,11 +9,14 @@
           <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
         </div>
 
-        <a href="{{ url_for('posts.update_post',post_id=post.id) }}"
-            class="btn btn-sm btn-secondary mb-1 mt-1">Update</a>
+        {% if post.author == current_user %}
 
-        <button class="btn btn-danger btn-sm m-1" data-toggle="modal"
-              data-target="#deleteModal">Delete</button>
+          <a href="{{ url_for('posts.update_post',post_id=post.id) }}"
+              class="btn btn-sm btn-secondary mb-1 mt-1">Update</a>
+
+          <button class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                data-target="#deleteModal">Delete</button>
+        {% endif %}
 
         <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
